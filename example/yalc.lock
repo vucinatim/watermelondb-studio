@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "watermelondb-studio": {
+      "signature": "e4a88b5c0b8b809e8d4c82eae20f831f",
+      "file": true
+    }
+  }
+}
