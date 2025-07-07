@@ -14779,13 +14779,13 @@ __metadata:
     react-native-svg: ^15.12.0
     react-native-tcp-socket: ^6.3.0
     react-native-web: ~0.20.0
-    watermelondb-studio: "file:.yalc/watermelondb-studio"
+    watermelondb-studio: "https://github.com/vucinatim/watermelondb-studio.git"
   languageName: unknown
   linkType: soft
 
-"watermelondb-studio@file:.yalc/watermelondb-studio::locator=watermelondb-studio-example%40workspace%3Aexample":
+"watermelondb-studio@https://github.com/vucinatim/watermelondb-studio.git":
   version: 0.1.0
-  resolution: "watermelondb-studio@file:.yalc/watermelondb-studio#.yalc/watermelondb-studio::hash=dd06d0&locator=watermelondb-studio-example%40workspace%3Aexample"
+  resolution: "watermelondb-studio@https://github.com/vucinatim/watermelondb-studio.git#commit=ac53fa4b4c0f507ac9a4b3be45a8e3d098cb6eb8"
   dependencies:
     "@react-native-async-storage/async-storage": "*"
     buffer: "*"
@@ -14805,7 +14805,7 @@ __metadata:
     react-native-tcp-socket: "*"
   bin:
     watermelondb-studio: ./lib/module/cli.js
-  checksum: 3d970d875b571982f022c6dbedcdd3e3cfe7d73d56656be8afe078d2a60a4f8f91b0c5b6d04afd0b976ff30e5cba950ecf1cddb323b34e5fe803d3fb430c8a63
+  checksum: 3e8dc1414f9cb165dfcc7aadb59e30e75726a5ac4f80523ad83d84ac9344d7c979f85977900e06c51089b29d7eb19cc45cb68b1b536d7d0bee0ec4fc0ea55a2d
   languageName: node
   linkType: hard
 
