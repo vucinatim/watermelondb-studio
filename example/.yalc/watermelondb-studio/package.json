@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "description": "watermelon db on device server and web client for viewing and managing the db",
   "main": "./lib/module/index.js",
+  "module": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "bin": {
-    "watermelondb-studio-viewer": "./lib/module/cli.js"
+    "watermelondb-studio": "./lib/module/cli.js"
   },
   "exports": {
     ".": {
@@ -37,10 +38,11 @@
   ],
   "scripts": {
     "example": "yarn workspace watermelondb-studio-example",
-    "test": "jest",
+    "test": "jest src/__tests__",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
+    "build:viewer": "cd viewer && yarn install && yarn build && cd ..",
     "release": "release-it --only-version"
   },
   "keywords": [
@@ -68,16 +70,17 @@
     "expo-network": "*",
     "lucide-react-native": "*",
     "react-native-qrcode-svg": "*",
-    "react-native-safe-area-context": "*",
-    "react-native-tcp-socket": "*",
     "serve": "^14.2.3",
     "zustand": "*"
   },
   "peerDependencies": {
-    "@nozbe/watermelondb": "*",
+    "@nozbe/watermelondb": ">=0.27.0",
+    "expo-device": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-svg": "*"
+    "react-native-safe-area-context": "*",
+    "react-native-svg": "*",
+    "react-native-tcp-socket": "*"
   },
   "workspaces": [
     "example"
@@ -144,5 +147,5 @@
     "type": "library",
     "version": "0.51.1"
   },
-  "yalcSig": "e4a88b5c0b8b809e8d4c82eae20f831f"
+  "yalcSig": "1e62df4250ba00ef3b8b873d0294675b"
 }

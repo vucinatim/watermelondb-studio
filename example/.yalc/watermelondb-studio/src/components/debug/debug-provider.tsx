@@ -27,8 +27,6 @@ export const DebugProvider = ({
     ipAddress: string;
     port: number;
   } | null>(null);
-  const tapCount = useRef(0);
-  const tapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Initialize the server manager once with the database instance
   if (!dbServerManager) {
@@ -67,28 +65,13 @@ export const DebugProvider = ({
     }
   }, [isDbServerEnabled]);
 
-  const onSingleTap = () => {
-    tapCount.current += 1;
-
-    if (tapTimer.current) {
-      clearTimeout(tapTimer.current);
-    }
-
-    if (tapCount.current === 4) {
-      setDebugOverlayVisible(true);
-      tapCount.current = 0;
-    } else {
-      tapTimer.current = setTimeout(() => {
-        tapCount.current = 0;
-      }, 500); // Reset after 500ms
-    }
-  };
-
   const panResponder = useRef(
     PanResponder.create({
-      onStartShouldSetPanResponderCapture: () => {
-        onSingleTap();
-        return false;
+      onStartShouldSetPanResponderCapture: (_evt, gestureState) => {
+        return gestureState.numberActiveTouches === 4;
+      },
+      onPanResponderGrant: () => {
+        setDebugOverlayVisible(true);
       },
     })
   ).current;

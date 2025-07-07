@@ -57,7 +57,7 @@ export const DebugOverlay = ({
     serverStatus.charAt(0).toUpperCase() + serverStatus.slice(1);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} pointerEvents="box-none">
       <Modal
         animationType="slide"
         transparent

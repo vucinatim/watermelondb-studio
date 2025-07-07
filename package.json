@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "description": "watermelon db on device server and web client for viewing and managing the db",
   "main": "./lib/module/index.js",
+  "module": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
-  "bin": {
-    "watermelondb-studio-viewer": "./lib/module/cli.js"
-  },
+  "bin": "./lib/module/cli.js",
   "exports": {
     ".": {
       "source": "./src/index.tsx",
@@ -37,12 +36,13 @@
   ],
   "scripts": {
     "example": "yarn workspace watermelondb-studio-example",
-    "test": "jest",
-    "typecheck": "tsc",
+    "test": "jest src/__tests__",
+    "typecheck": "tsc --build example && tsc --build viewer",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
-    "prepare": "bob build",
-    "release": "release-it --only-version"
+    "prepare": "yarn build:viewer && bob build",
+    "build:viewer": "cd viewer && yarn install && yarn build && cd ..",
+    "release": "release-it"
   },
   "keywords": [
     "react-native",
@@ -69,41 +69,62 @@
     "expo-network": "*",
     "lucide-react-native": "*",
     "react-native-qrcode-svg": "*",
-    "react-native-safe-area-context": "*",
-    "react-native-tcp-socket": "*",
     "serve": "^14.2.3",
     "zustand": "*"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/runtime": "^7.24.5",
+    "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.6.0",
     "@eslint/compat": "^1.2.7",
     "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.22.0",
     "@evilmartians/lefthook": "^1.5.0",
-    "@nozbe/watermelondb": "^0.28.0",
+    "@jest/globals": "^29.7.0",
+    "@nozbe/watermelondb": "*",
     "@react-native/babel-preset": "0.78.2",
     "@react-native/eslint-config": "^0.78.0",
+    "@react-native/metro-config": "0.74.83",
+    "@react-native/typescript-config": "0.74.83",
     "@release-it/conventional-changelog": "^9.0.2",
     "@types/jest": "^29.5.5",
     "@types/react": "^19.0.12",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "babel-plugin-module-resolver": "^5.0.2",
     "commitlint": "^19.6.1",
     "del-cli": "^5.1.0",
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-native": "^4.1.0",
+    "expo-device": "*",
     "jest": "^29.7.0",
+    "lefthook": "^1.6.10",
     "prettier": "^3.0.3",
     "react": "19.0.0",
     "react-native": "0.79.5",
     "react-native-builder-bob": "^0.40.12",
+    "react-native-safe-area-context": "^5.5.1",
+    "react-native-tcp-socket": "^6.3.0",
     "release-it": "^17.10.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
-    "@nozbe/watermelondb": "*",
+    "@nozbe/watermelondb": ">=0.27.0",
+    "expo-device": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-svg": "*"
+    "react-native-safe-area-context": "*",
+    "react-native-svg": "*",
+    "react-native-tcp-socket": "*"
   },
   "workspaces": [
     "example"

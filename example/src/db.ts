@@ -1,6 +1,16 @@
 import { appSchema, tableSchema } from '@nozbe/watermelondb';
 import { Database } from '@nozbe/watermelondb';
 import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite';
+import { Model } from '@nozbe/watermelondb';
+import { field, text } from '@nozbe/watermelondb/decorators';
+
+export class Post extends Model {
+  static table = 'posts';
+
+  @text('title') title!: string;
+  @text('body') body!: string;
+  @field('is_pinned') isPinned!: boolean;
+}
 
 const schema = appSchema({
   version: 1,
@@ -34,5 +44,5 @@ const adapter = new SQLiteAdapter({
 
 export const database = new Database({
   adapter,
-  modelClasses: [],
+  modelClasses: [Post],
 });

@@ -222,7 +222,29 @@ export class DbServerManager {
 
   private startDbObserver = () => {
     log('Starting DB observer.');
-    const tableNames = Object.keys(this.database.schema.tables);
+    const allTableNames = Object.keys(this.database.schema.tables);
+    const validCollections = allTableNames
+      .map((tableName) => ({
+        tableName,
+        collection: this.database.collections.get(tableName),
+      }))
+      .filter(({ collection, tableName }) => {
+        if (!collection) {
+          log(
+            `[Warning] No collection found for table "${tableName}" in schema. Skipping observer.`
+          );
+          return false;
+        }
+        return true;
+      });
+
+    const tableNames = validCollections.map((vc) => vc.tableName);
+
+    if (tableNames.length === 0) {
+      log('No valid tables found to observe. Skipping DB observer.');
+      return;
+    }
+
     const subscription = this.database
       .withChangesForTables(tableNames)
       .subscribe((changes: any) => {
