@@ -14785,7 +14785,7 @@ __metadata:
 
 "watermelondb-studio@https://github.com/vucinatim/watermelondb-studio.git":
   version: 0.1.0
-  resolution: "watermelondb-studio@https://github.com/vucinatim/watermelondb-studio.git#commit=ac53fa4b4c0f507ac9a4b3be45a8e3d098cb6eb8"
+  resolution: "watermelondb-studio@https://github.com/vucinatim/watermelondb-studio.git#commit=dd49bc0adf322357eb1a8e4d32c1b1b2b5b02f77"
   dependencies:
     "@react-native-async-storage/async-storage": "*"
     buffer: "*"
@@ -14805,7 +14805,7 @@ __metadata:
     react-native-tcp-socket: "*"
   bin:
     watermelondb-studio: ./lib/module/cli.js
-  checksum: 3e8dc1414f9cb165dfcc7aadb59e30e75726a5ac4f80523ad83d84ac9344d7c979f85977900e06c51089b29d7eb19cc45cb68b1b536d7d0bee0ec4fc0ea55a2d
+  checksum: 5a9a8b391a1434024372adcc51f42806b321a0a200e96ccf5fbae96f57ceea5b89239ab08dfe0915cc747e9bac5839ad53e0d3459f2093f5436a78af6a929639
   languageName: node
   linkType: hard
 

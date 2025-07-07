@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 const cli = () => {
   // Path to the viewer/dist directory, which is inside our package
-  const viewerDistPath = path.resolve(__dirname, '..', '..', 'viewer', 'dist');
+  const viewerDistPath = path.resolve(__dirname, '..', 'viewer', 'dist');
 
   console.log('Starting WatermelonDB Studio viewer...');
   console.log(`Serving static files from: ${viewerDistPath}`);
