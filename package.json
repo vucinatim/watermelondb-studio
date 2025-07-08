@@ -37,7 +37,7 @@
   "scripts": {
     "example": "yarn workspace watermelondb-studio-example",
     "test": "jest src/__tests__",
-    "typecheck": "tsc --build example && tsc --build viewer",
+    "typecheck": "echo '🔍 Type-checking root...' && npx tsc --noEmit && echo '🔍 Type-checking example...' && (cd example && npx tsc --noEmit) && echo '🔍 Type-checking viewer...' && (cd viewer && npx tsc --noEmit) && echo '✅ All type checks passed!'",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
     "prepare": "yarn build:viewer && bob build",
