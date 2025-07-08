@@ -415,10 +415,7 @@ export class DbServerManager {
         log('Ignoring error on already-closing server.');
         return;
       }
-      if (
-        e.code === 'EADDRINUSE' ||
-        (e.message && e.message.includes('EADDRINUSE'))
-      ) {
+      if (e.toString().includes('EADDRINUSE')) {
         log(
           `Port ${port} is in use. Closing this instance and trying next port...`
         );
@@ -428,7 +425,7 @@ export class DbServerManager {
           setTimeout(() => {
             this.isClosing = false;
             this.attemptToStart(port + 1);
-          }, 100);
+          }, 500);
         });
       } else {
         log(`An unexpected error occurred: ${e.toString()}`);
