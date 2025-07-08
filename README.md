@@ -1,8 +1,8 @@
 # WatermelonDB Studio
 
 <p>
-<a href="https://badge.fury.io/js/watermelondb-studio"><img src="https://badge.fury.io/js/watermelondb-studio.svg" alt="npm version" height="30"></a>
-<a href="https://www.buymeacoffee.com/vucinatim" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="20" style="margin-left: 10px;"></a>
+<a href="https://badge.fury.io/js/watermelondb-studio"><img src="https://badge.fury.io/js/watermelondb-studio.svg" alt="npm version" height="35"></a>
+<a href="https://www.buymeacoffee.com/vucinatim" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="25" style="margin-left: 20px;"></a>
 </p>
 
 A developer tool for browsing and managing your WatermelonDB database directly from your device, inspired by tools like Flipper, but with no native client installation needed.
