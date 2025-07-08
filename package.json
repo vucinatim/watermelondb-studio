@@ -1,6 +1,6 @@
 {
   "name": "watermelondb-studio",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "watermelon db on device server and web client for viewing and managing the db",
   "main": "./lib/module/index.js",
   "module": "./lib/module/index.js",
