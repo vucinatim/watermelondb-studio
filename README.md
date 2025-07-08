@@ -1,4 +1,4 @@
-# WatermelonDB Studio
+# 🍉 WatermelonDB Studio
 
 <p>
 <a href="https://badge.fury.io/js/watermelondb-studio"><img src="https://badge.fury.io/js/watermelondb-studio.svg" alt="npm version" height="35"></a>
