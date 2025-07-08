@@ -60,7 +60,7 @@ export function DataTable({
   const { selectedTableData, loading } = useDb(tableName);
   const data = React.useMemo(
     () => (propData ? propData.rows : selectedTableData) || [],
-    [propData, selectedTableData],
+    [propData, selectedTableData]
   );
   const highlightedRows = useHighlightOnChange(data);
 
@@ -83,7 +83,7 @@ export function DataTable({
         : data.length > 0
           ? Object.keys(data[0]).join(',')
           : '',
-    [data, propData],
+    [data, propData]
   );
 
   const columns = React.useMemo<ColumnDef<Record<string, unknown>>[]>(() => {
@@ -97,7 +97,8 @@ export function DataTable({
         header: ({ table }) => (
           <div
             className="flex items-center justify-center pr-2"
-            onClick={(e) => e.stopPropagation()}>
+            onClick={(e) => e.stopPropagation()}
+          >
             <Checkbox
               checked={
                 table.getIsAllPageRowsSelected() ||
@@ -113,7 +114,8 @@ export function DataTable({
         cell: ({ row }) => (
           <div
             className="flex items-center justify-center pr-2"
-            onClick={(e) => e.stopPropagation()}>
+            onClick={(e) => e.stopPropagation()}
+          >
             <Checkbox
               checked={row.getIsSelected()}
               onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -140,7 +142,7 @@ export function DataTable({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
+    []
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState({
@@ -173,18 +175,18 @@ export function DataTable({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
 
-  if (!tableName) {
-    return (
-      <div className="absolute inset-0 flex items-center justify-center">
-        Select a table to view its data.
-      </div>
-    );
-  }
-
   if (loading && data.length === 0) {
     return (
       <div className="absolute inset-0 flex items-center justify-center">
         Loading...
+      </div>
+    );
+  }
+
+  if (!tableName) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center">
+        Select a table to view its data.
       </div>
     );
   }
@@ -205,7 +207,7 @@ export function DataTable({
                           ? null
                           : flexRender(
                               header.column.columnDef.header,
-                              header.getContext(),
+                              header.getContext()
                             )}
                       </TableHead>
                     );
@@ -221,20 +223,21 @@ export function DataTable({
                     data-state={row.getIsSelected() && 'selected'}
                     onClick={() =>
                       setSelectedRowId(
-                        (row.original as { id: string | number }).id,
+                        (row.original as { id: string | number }).id
                       )
                     }
                     className={cn(
                       'cursor-pointer transition-colors duration-500',
                       highlightedRows.has(
-                        (row.original as { id: string | number }).id,
-                      ) && 'bg-zinc-200/50',
-                    )}>
+                        (row.original as { id: string | number }).id
+                      ) && 'bg-zinc-200/50'
+                    )}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext(),
+                          cell.getContext()
                         )}
                       </TableCell>
                     ))}
@@ -244,7 +247,8 @@ export function DataTable({
                 <TableRow>
                   <TableCell
                     colSpan={columns.length}
-                    className="h-24 text-center">
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>
