@@ -27,7 +27,11 @@ It provides an on-device server and a web-based client to view, query, and manag
 
 ```sh
 yarn add watermelondb-studio
-# or
+```
+
+or
+
+```sh
 npm install watermelondb-studio
 ```
 
@@ -37,7 +41,11 @@ This package relies on several peer dependencies which you need to install in yo
 
 ```sh
 yarn add @react-native-async-storage/async-storage expo-device expo-network react-native-svg react-native-tcp-socket
-# or
+```
+
+or
+
+```sh
 npm install @react-native-async-storage/async-storage expo-device expo-network react-native-svg react-native-tcp-socket
 ```
 
@@ -55,8 +63,8 @@ Run `npx pod-install` for iOS. For Android, the autolinking should handle it, bu
 
 WatermelonDB Studio has two parts:
 
-1.  **The In-App Component (`DebugProvider`):** You add this to your React Native app. It wraps your application and starts a small server that has direct access to your WatermelonDB instance.
-2.  **The Web Client:** A separate web application that you run from your terminal. This client provides the UI for interacting with your database and connects to the in-app server over your local network.
+1.  **The In-App Component (`DebugProvider`):** You add this to your React Native app. It wraps your application and starts a small server that has direct access to your WatermelonDB instance. This server observes your database for any changes.
+2.  **The Web Client:** A separate web application that connects to your app's server. It receives a live stream of your data, reacting instantly to any changes in the app. This is done efficiently by sending only the data differences over an SSE (Server-Sent Events) connection, so you always have a real-time view of your database with minimal overhead.
 
 ## Usage
 
