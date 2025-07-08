@@ -30,7 +30,8 @@ export function SiteHeader() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setConnectDialogOpen(true)}>
+              onClick={() => setConnectDialogOpen(true)}
+            >
               <IconQrcode className="mr-2 h-4 w-4" />
               Connect with QR
             </Button>
@@ -38,12 +39,14 @@ export function SiteHeader() {
               variant="ghost"
               asChild
               size="sm"
-              className="hidden sm:flex">
+              className="hidden sm:flex"
+            >
               <a
-                href="https://github.com/nozbe/WatermelonDB"
+                href="https://github.com/vucinatim/watermelondb-studio"
                 rel="noopener noreferrer"
                 target="_blank"
-                className="dark:text-foreground">
+                className="dark:text-foreground"
+              >
                 <IconBrandGithub />
                 <span className="hidden sm:block">GitHub</span>
               </a>

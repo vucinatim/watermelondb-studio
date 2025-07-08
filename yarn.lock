@@ -14856,7 +14856,6 @@ __metadata:
     react-native: 0.79.5
     react-native-builder-bob: ^0.40.12
     react-native-qrcode-svg: "*"
-    react-native-safe-area-context: ^5.5.1
     react-native-tcp-socket: ^6.3.0
     release-it: ^17.10.0
     serve: ^14.2.3
@@ -14865,10 +14864,11 @@ __metadata:
     zustand: "*"
   peerDependencies:
     "@nozbe/watermelondb": ">=0.27.0"
+    "@react-native-async-storage/async-storage": "*"
     expo-device: "*"
+    expo-network: "*"
     react: "*"
     react-native: "*"
-    react-native-safe-area-context: "*"
     react-native-svg: "*"
     react-native-tcp-socket: "*"
   bin:
