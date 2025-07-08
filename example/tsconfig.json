@@ -3,6 +3,10 @@
   "compilerOptions": {
     "strict": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "watermelondb-studio": ["../src/index.tsx"]
+    }
   }
 }

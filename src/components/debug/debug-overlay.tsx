@@ -1,8 +1,15 @@
 import type { ServerStatus } from '../../db-server';
 import { Undo2 } from 'lucide-react-native';
-import { Modal, Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import {
+  Modal,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Switch,
+  Text,
+  View,
+} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface DebugOverlayProps {
   visible: boolean;
@@ -132,7 +139,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     padding: 24,
     borderRadius: 16,
   },
