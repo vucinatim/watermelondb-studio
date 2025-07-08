@@ -15,7 +15,6 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "src",
     "lib",
     "viewer/dist",
     "android",
