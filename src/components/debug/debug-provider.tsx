@@ -11,15 +11,10 @@ export interface DebugProviderProps extends PropsWithChildren {
   database: Database;
 }
 
-// Instantiate the server manager outside the component
-// so it persists across re-renders.
-let dbServerManager: DbServerManager | null = null;
-
-export const DebugProvider = ({
+const DebugProviderContent = ({
   children,
-  enabled = false,
   database,
-}: DebugProviderProps) => {
+}: PropsWithChildren<{ database: Database }>) => {
   const [debugOverlayVisible, setDebugOverlayVisible] = useState(false);
   const { isDbServerEnabled, toggleDbServer } = useDebugStore();
   const [serverStatus, setServerStatus] = useState<ServerStatus>('stopped');
@@ -28,40 +23,44 @@ export const DebugProvider = ({
     port: number;
   } | null>(null);
 
-  // Initialize the server manager once with the database instance
-  if (!dbServerManager) {
-    dbServerManager = new DbServerManager(database);
-  }
+  const dbServerManagerRef = useRef<DbServerManager | null>(null);
 
-  // Subscribe to live status changes from the server manager
   useEffect(() => {
-    const unsubscribe = dbServerManager!.subscribe((status) => {
+    const manager = new DbServerManager(database);
+    dbServerManagerRef.current = manager;
+
+    const unsubscribe = manager.subscribe((status) => {
       setServerStatus(status);
       if (status === 'running') {
-        setConnectionInfo(dbServerManager!.getConnectionInfo());
+        setConnectionInfo(manager.getConnectionInfo());
       } else {
         setConnectionInfo(null);
       }
     });
+
+    if (useDebugStore.getState().isDbServerEnabled) {
+      setTimeout(() => {
+        manager.start();
+      }, 500);
+    }
+
     return () => {
-      if (useDebugStore.getState().isDbServerEnabled) {
-        console.log('Stopping db server on component unmount (hot reload)');
-        dbServerManager!.stop();
-      }
+      manager.stop();
       unsubscribe();
     };
-  }, []);
+  }, [database]);
 
-  // Sync desired state (from store) with the server's actual state
   useEffect(() => {
+    const manager = dbServerManagerRef.current;
+    if (!manager) {
+      return;
+    }
     if (isDbServerEnabled) {
-      // IMPORTANT: Give the server a chance to stop before starting it again
-      // (to prevent race condition of the tcp port)
       setTimeout(() => {
-        dbServerManager!.start();
+        manager.start();
       }, 500);
     } else {
-      dbServerManager!.stop();
+      manager.stop();
     }
   }, [isDbServerEnabled]);
 
@@ -76,10 +75,6 @@ export const DebugProvider = ({
     })
   ).current;
 
-  if (!enabled) {
-    return <>{children}</>;
-  }
-
   return (
     <View style={{ flex: 1 }} {...panResponder.panHandlers}>
       {children}
@@ -92,5 +87,19 @@ export const DebugProvider = ({
         connectionInfo={connectionInfo}
       />
     </View>
+  );
+};
+
+export const DebugProvider = ({
+  children,
+  enabled = false,
+  database,
+}: DebugProviderProps) => {
+  if (!enabled) {
+    return <>{children}</>;
+  }
+
+  return (
+    <DebugProviderContent database={database}>{children}</DebugProviderContent>
   );
 };
